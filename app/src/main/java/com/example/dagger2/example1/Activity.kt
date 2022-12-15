@@ -1,14 +1,14 @@
 package com.example.dagger2.example1
 
+import javax.inject.Inject
+
 class Activity {
 
-    val monitor = Monitor()
-    val keyboard = Keyboard()
-    val mouse = Mouse()
-    val computerTower = ComputerTower(
-        Storage(),
-        Memory(),
-        Processor()
-    )
-    val computer = Computer(monitor, computerTower, keyboard, mouse)
+    @Inject
+    lateinit var computer: Computer
+
+    init {
+        DaggerNewComponent.create().inject(this)
+    }
+
 }
